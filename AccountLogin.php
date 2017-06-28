@@ -31,10 +31,13 @@ if(!$Email || !$Password){
 			// When other games are made will need to determine which game is accessing login.
 			$PlayerSkill = mysql_result(mysql_query("SELECT `etherlands_skill` FROM `engine4_users` WHERE email = '".$Email."' LIMIT 1"),0) or die ("Database Error!");
 			$PhotoPath = mysql_result(mysql_query("SELECT `storage_path` FROM `engine4_storage_files` WHERE `file_id` = '".$PlayerPhotoID."' LIMIT 1"),0) or die ("Database Error!");
+			//This pushes the player's display name back to the game client.
 			echo $DisplayName;
 			echo ":";
+			//This pushes the player's portrait id back to the game client so that it can be loaded locally from stored files in the game client.
 			echo $PhotoPath;
 			echo ":";
+			//This pushes the player's skill level back to the client for match making purposes, and for display in player's profiles. 
 			echo $PlayerSkill;
 			echo "Success";
 		}else{
